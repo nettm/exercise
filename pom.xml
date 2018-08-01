@@ -92,5 +92,6 @@
 		<module>exercise-netty</module>
 		<module>exercise-asynchronous</module>
 		<module>exercise-io</module>
+		<module>exercise-leetcode</module>
 	</modules>
 </project>
