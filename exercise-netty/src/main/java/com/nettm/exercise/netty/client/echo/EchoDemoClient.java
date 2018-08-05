@@ -1,4 +1,4 @@
-package com.nettm.exercise.netty.client;
+package com.nettm.exercise.netty.client.echo;
 
 import java.net.InetSocketAddress;
 

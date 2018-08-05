@@ -1,4 +1,4 @@
-package com.nettm.exercise.netty.server;
+package com.nettm.exercise.netty.server.echo;
 
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
