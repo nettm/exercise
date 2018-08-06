@@ -1,4 +1,4 @@
-package com.nettm.exercise.io.nio;
+package com.nettm.exercise.io.net;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;

@@ -1,4 +1,4 @@
-package com.nettm.exercise.io.oio;
+package com.nettm.exercise.io.net;
 
 import java.io.IOException;
 import java.io.OutputStream;
