@@ -25,14 +25,14 @@ public class EchoDemoServer {
 		try {
 			ServerBootstrap b = new ServerBootstrap();
 			b.group(group)
-			.channel(NioServerSocketChannel.class)
-			.localAddress(new InetSocketAddress(port))
-			.childHandler(new ChannelInitializer<SocketChannel>() {
-				@Override
-				protected void initChannel(SocketChannel ch) throws Exception {
-					ch.pipeline().addLast(serverHandler);
-				}
-			});
+    			.channel(NioServerSocketChannel.class)
+    			.localAddress(new InetSocketAddress(port))
+    			.childHandler(new ChannelInitializer<SocketChannel>() {
+    				@Override
+    				protected void initChannel(SocketChannel ch) throws Exception {
+    					ch.pipeline().addLast(serverHandler);
+    				}
+    			});
 			 
 			ChannelFuture f = b.bind().sync();
 			f.channel().closeFuture().sync();

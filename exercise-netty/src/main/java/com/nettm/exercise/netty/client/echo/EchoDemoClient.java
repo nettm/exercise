@@ -27,14 +27,14 @@ public class EchoDemoClient {
 		try {
 			Bootstrap b = new Bootstrap();
 			b.group(group)
-			.channel(NioSocketChannel.class)
-			.remoteAddress(new InetSocketAddress(host, port))
-					.handler(new ChannelInitializer<SocketChannel>() {
-						@Override
-						protected void initChannel(SocketChannel ch) throws Exception {
-							ch.pipeline().addLast(new EchoChannelHandler());
-						}
-					});
+    			.channel(NioSocketChannel.class)
+    			.remoteAddress(new InetSocketAddress(host, port))
+    			.handler(new ChannelInitializer<SocketChannel>() {
+    				@Override
+    				protected void initChannel(SocketChannel ch) throws Exception {
+    					ch.pipeline().addLast(new EchoChannelHandler());
+    				}
+    			});
 			ChannelFuture f = b.connect().sync();
 			f.channel().closeFuture().sync();
 		} finally {
