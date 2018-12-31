@@ -94,5 +94,6 @@
 		<module>exercise-io</module>
 		<module>exercise-leetcode</module>
         <module>exercise-spi</module>
+        <module>exercise-spring</module>
     </modules>
 </project>
