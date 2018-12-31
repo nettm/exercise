@@ -10,18 +10,18 @@ import java.util.Objects;
 @Component
 public class MyApplicationContextAware implements ApplicationContextAware {
 
-    private static ApplicationContext applicationContext;
+    private static ApplicationContext context;
 
     @Override
     public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
-        if (Objects.isNull(applicationContext)) {
-            applicationContext = applicationContext;
+        if (Objects.isNull(context)) {
+            context = applicationContext;
         }
     }
 
 
     public static ApplicationContext getApplicationContext() {
-        return applicationContext;
+        return context;
     }
 
 

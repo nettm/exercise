@@ -35,14 +35,15 @@ public class MyBeanFactoryPostProcessor implements BeanFactoryPostProcessor {
         String[] beanNamesForType = defaultListableBeanFactory.getBeanNamesForType(ICat.class);
         System.out.println("beanNamesForType:" + Arrays.toString(beanNamesForType));
 
-        defaultListableBeanFactory.removeBeanDefinition(beanNamesForType[0]);
+        // defaultListableBeanFactory.removeBeanDefinition(beanNamesForType[0]);
 
         // 通过BeanDefinitionBuilder创建bean定义
         BeanDefinitionBuilder beanDefinitionBuilder = BeanDefinitionBuilder.genericBeanDefinition(ICat.class);
 
         // 注册bean
         defaultListableBeanFactory.registerBeanDefinition("com.nettm.exercise.spring.cat.Persia", beanDefinitionBuilder.getRawBeanDefinition());
-        ICat bean = MyApplicationContextAware.getBean(ICat.class);
-        bean.run();
+        ICat cat = MyApplicationContextAware.getBean(ICat.class);
+        cat.run();
+
     }
 }
