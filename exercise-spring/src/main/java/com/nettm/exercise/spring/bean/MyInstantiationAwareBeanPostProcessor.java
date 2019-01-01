@@ -1,5 +1,6 @@
 package com.nettm.exercise.spring.bean;
 
+import com.nettm.exercise.spring.cat.ICat;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.PropertyValues;
 import org.springframework.beans.factory.config.InstantiationAwareBeanPostProcessor;
@@ -21,6 +22,11 @@ public class MyInstantiationAwareBeanPostProcessor implements InstantiationAware
     @Override
     public boolean postProcessAfterInstantiation(Object bean, String beanName) throws BeansException {
         System.out.println("postProcessAfterInstantiation");
+
+        if (bean instanceof ICat) {
+            System.out.println("-------------------");
+        }
+
         return false;
     }
 
