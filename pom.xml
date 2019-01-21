@@ -95,5 +95,6 @@
 		<module>exercise-leetcode</module>
         <module>exercise-spi</module>
         <module>exercise-spring</module>
+        <module>exercise-base</module>
     </modules>
 </project>
