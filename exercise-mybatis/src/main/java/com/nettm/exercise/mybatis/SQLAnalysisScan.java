@@ -30,7 +30,7 @@ import java.util.*;
  */
 public class SQLAnalysisScan {
 
-    private static final String ROOT = "/Users/tianmu/gitlab/saas-tnt";
+    private static final String ROOT = "/Users/test/exercise";
 
     private static String errMethod = StringUtils.EMPTY;
 
@@ -266,24 +266,25 @@ public class SQLAnalysisScan {
         }
     }
 
+    /**
+     * 扫描类
+     */
     private static void getScanClasses(String root, List<String> classes) {
         File dir = new File(root);
-        if (dir.exists()) {
-            if (dir.isDirectory()) {
-                if (dir.getName().equals("classes")) {
-                    classes.add(dir.getAbsolutePath());
-                } else {
-                    File[] files = dir.listFiles();
-                    if (Objects.isNull(files)) {
-                        return;
-                    }
-
-                    for (File file : files) {
-                        getScanClasses(file.getAbsolutePath(), classes);
-                    }
+        if (dir.exists() && dir.isDirectory()) {
+            if (dir.getName().equals("classes")) {
+                classes.add(dir.getAbsolutePath());
+            } else {
+                File[] files = dir.listFiles();
+                if (Objects.isNull(files)) {
+                    return;
                 }
 
+                for (File file : files) {
+                    getScanClasses(file.getAbsolutePath(), classes);
+                }
             }
+
         }
     }
 
@@ -298,6 +299,9 @@ public class SQLAnalysisScan {
         return null;
     }
 
+    /**
+     * 加载类，但对于依赖不能加载
+     */
     private static void loadClass() {
         List<String> classes = new ArrayList<>();
         getScanClasses(ROOT, classes);
