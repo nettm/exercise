@@ -100,5 +100,7 @@
         <module>exercise-vertx</module>
         <module>exercise-lombok</module>
         <module>exercise-rxjava</module>
+        <module>exercise-ast</module>
+        <module>exercise-mybatis</module>
     </modules>
 </project>
