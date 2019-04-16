@@ -8,11 +8,9 @@ import lombok.Data;
 @Data
 public class Field {
 
-    private JavaClass javaClass;
+    private String type;
 
     private String name;
-
-    private Boolean isCollection;
 
     private Boolean isStatic;
 

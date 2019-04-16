@@ -11,7 +11,7 @@ import java.util.List;
 @Data
 public class Method {
 
-    private JavaClass returnType;
+    private String returnType;
 
     private String name;
 
@@ -19,7 +19,7 @@ public class Method {
 
     private String access;
 
-    private List<JavaClass> params = new ArrayList<>();
+    private List<String> params = new ArrayList<>();
 
     private List<MethodCall> methodCallList = new ArrayList<>();
 

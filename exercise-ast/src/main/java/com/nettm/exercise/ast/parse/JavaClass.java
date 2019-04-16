@@ -39,9 +39,9 @@ public class JavaClass {
 
     private List<Method> methodList = new ArrayList<>();
 
-    private List<JavaClass> interfaceList = new ArrayList<>();
+    private List<String> interfaceList = new ArrayList<>();
 
-    private List<JavaClass> parentList = new ArrayList<>();
+    private List<String> parentList = new ArrayList<>();
 
     private List<String> importList = new ArrayList<>();
 

@@ -1,6 +1,7 @@
 package com.nettm.exercise.ast.parse;
 
 import com.github.javaparser.StaticJavaParser;
+import com.github.javaparser.ast.CompilationUnit;
 
 import java.io.File;
 import java.util.*;
@@ -34,7 +35,8 @@ public class JavaCodeParser {
 
             ParseVisitorAdapter adapter = new ParseVisitorAdapter(javaClass);
             try {
-                adapter.visit(StaticJavaParser.parse(new File(source)), null);
+                CompilationUnit unit = StaticJavaParser.parse(new File(source));
+                adapter.visit(unit, null);
                 map.put(javaClass.getFullName(), javaClass);
             } catch (Exception e) {
                 System.out.println(e.getMessage());

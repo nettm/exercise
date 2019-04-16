@@ -8,7 +8,7 @@ import lombok.Data;
 @Data
 public class MethodCall {
 
-    private JavaClass javaClass;
+    private String type;
 
     private Method method;
 
