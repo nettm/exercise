@@ -11,6 +11,12 @@ import java.util.List;
 @Data
 public class JavaClass {
 
+    private String name;
+
+    private String fullName;
+
+    private String source;
+
     private Boolean isInterface;
 
     private Boolean isAbstractClass;
@@ -36,5 +42,7 @@ public class JavaClass {
     private List<JavaClass> interfaceList = new ArrayList<>();
 
     private List<JavaClass> parentList = new ArrayList<>();
+
+    private List<String> importList = new ArrayList<>();
 
 }
