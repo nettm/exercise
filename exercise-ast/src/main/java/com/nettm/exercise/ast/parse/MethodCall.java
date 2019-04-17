@@ -2,14 +2,28 @@ package com.nettm.exercise.ast.parse;
 
 import lombok.Data;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
- * 描述
+ * 调用方法
  */
 @Data
 public class MethodCall {
 
+    /**
+     * 类型（包含包路径）
+     */
     private String type;
 
-    private Method method;
+    /**
+     * 方法名
+     */
+    private String name;
+
+    /**
+     * 参数（类型）
+     */
+    private List<String> params = new ArrayList<>();
 
 }

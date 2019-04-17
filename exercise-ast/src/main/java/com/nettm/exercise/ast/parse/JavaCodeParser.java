@@ -2,6 +2,7 @@ package com.nettm.exercise.ast.parse;
 
 import com.github.javaparser.StaticJavaParser;
 import com.github.javaparser.ast.CompilationUnit;
+import com.github.javaparser.ast.visitor.VoidVisitor;
 
 import java.io.File;
 import java.util.*;
@@ -13,8 +14,6 @@ import java.util.stream.Collectors;
 public class JavaCodeParser {
 
     private static final String ROOT = "/Users/tianmu/gitlab/saas-tnt";
-
-    private Map<String, JavaClass> javaClassMap = new HashMap<>();
 
     public static void main(String[] args) {
         JavaCodeParser parser = new JavaCodeParser();
@@ -33,13 +32,13 @@ public class JavaCodeParser {
             JavaClass javaClass = new JavaClass();
             javaClass.setSource(source);
 
-            ParseVisitorAdapter adapter = new ParseVisitorAdapter(javaClass);
+            VoidVisitor adapter = new ParseVisitorAdapter(javaClass);
             try {
                 CompilationUnit unit = StaticJavaParser.parse(new File(source));
                 adapter.visit(unit, null);
                 map.put(javaClass.getFullName(), javaClass);
             } catch (Exception e) {
-                System.out.println(e.getMessage());
+                e.printStackTrace();
             }
         }
 
@@ -52,8 +51,10 @@ public class JavaCodeParser {
             .filter(s -> !s.contains("test"))
             .filter(s -> !s.endsWith("Enum.java"))
             .filter(s -> !s.endsWith("Vo.java"))
+            .filter(s -> !s.endsWith("VO.java"))
             .filter(s -> !s.endsWith("Query.java"))
             .filter(s -> !s.endsWith("Dto.java"))
+            .filter(s -> !s.endsWith("DTO.java"))
             .collect(Collectors.toList());
     }
 
