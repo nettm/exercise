@@ -13,21 +13,27 @@ import java.util.stream.Collectors;
  */
 public class JavaCodeParser {
 
-    private static final String ROOT = "/Users/tianmu/gitlab/saas-tnt";
+    private static final String ROOT = "/Users/admin/test";
 
     public static void main(String[] args) {
         JavaCodeParser parser = new JavaCodeParser();
-        List<String> sourceList = parser.scanJavaSource(ROOT, new ArrayList<>());
-        sourceList = parser.filter(sourceList);
+        List<String> sourceList = parser.getSourceList(ROOT);
+        System.out.println("一共发现[" + sourceList.size() + "]个类");
 
         // 解析源码
-        Map<String, JavaClass> map = parser.parse(sourceList);
-        map.forEach((k, v) -> System.out.println(k));
+        List<JavaClass> javaClasses = parser.parse(sourceList);
+        javaClasses.forEach(s -> System.out.println(s));
     }
 
-    private Map<String, JavaClass> parse(List<String> sourceList) {
-        Map<String, JavaClass> map = new HashMap<>(sourceList.size());
+    public List<String> getSourceList(String root) {
+        List<String> sourceList = scanJavaSource(root, new ArrayList<>());
+        return filter(sourceList);
+    }
 
+    public List<JavaClass> parse(List<String> sourceList) {
+        System.out.println("解析开始：" + sourceList.size());
+
+        List<JavaClass> javaClasses = new ArrayList<>(sourceList.size());
         for (String source : sourceList) {
             JavaClass javaClass = new JavaClass();
             javaClass.setSource(source);
@@ -36,13 +42,14 @@ public class JavaCodeParser {
             try {
                 CompilationUnit unit = StaticJavaParser.parse(new File(source));
                 adapter.visit(unit, null);
-                map.put(javaClass.getFullName(), javaClass);
+                javaClasses.add(javaClass);
             } catch (Exception e) {
                 e.printStackTrace();
             }
         }
 
-        return map;
+        System.out.println("解析结束");
+        return javaClasses;
     }
 
     private List<String> filter(List<String> sourceList) {
@@ -55,6 +62,7 @@ public class JavaCodeParser {
             .filter(s -> !s.endsWith("Query.java"))
             .filter(s -> !s.endsWith("Dto.java"))
             .filter(s -> !s.endsWith("DTO.java"))
+            .filter(s -> !s.contains("package-info"))
             .collect(Collectors.toList());
     }
 

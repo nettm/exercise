@@ -13,14 +13,14 @@ import java.util.List;
 public class Method {
 
     /**
-     * 返回类型（包含包路径）
-     */
-    private String returnType;
-
-    /**
      * 方法名称
      */
     private String name;
+
+    /**
+     * 返回类型（包含包路径）
+     */
+    private String returnType;
 
     /**
      * 是否是静态方法

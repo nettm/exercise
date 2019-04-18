@@ -9,6 +9,11 @@ import lombok.Data;
 public class Field {
 
     /**
+     * 变量名
+     */
+    private String name;
+
+    /**
      * 类型
      */
     private String type;
@@ -17,11 +22,6 @@ public class Field {
      * 类型（包含包路径）
      */
     private String fullType;
-
-    /**
-     * 变量名
-     */
-    private String name;
 
     /**
      * 是否是静态变量

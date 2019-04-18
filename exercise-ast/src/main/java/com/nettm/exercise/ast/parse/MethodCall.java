@@ -12,14 +12,14 @@ import java.util.List;
 public class MethodCall {
 
     /**
-     * 类型（包含包路径）
-     */
-    private String type;
-
-    /**
      * 方法名
      */
     private String name;
+
+    /**
+     * 类型（包含包路径）
+     */
+    private String type;
 
     /**
      * 参数（类型）

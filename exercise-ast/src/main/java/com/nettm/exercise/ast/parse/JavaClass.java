@@ -71,14 +71,29 @@ public class JavaClass {
      */
     private String access;
 
+    /**
+     * 父类
+     */
+    private String parent;
+
+    /**
+     * 类属性
+     */
     private List<Field> fieldList = new ArrayList<>();
 
+    /**
+     * 方法列表
+     */
     private List<Method> methodList = new ArrayList<>();
 
+    /**
+     * 接口列表
+     */
     private List<String> interfaceList = new ArrayList<>();
 
-    private List<String> parentList = new ArrayList<>();
-
+    /**
+     * import列表
+     */
     private List<String> importList = new ArrayList<>();
 
 }

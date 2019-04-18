@@ -1,6 +1,7 @@
 package com.nettm.exercise.ast.parse;
 
 import com.github.javaparser.ast.ImportDeclaration;
+import com.github.javaparser.ast.NodeList;
 import com.github.javaparser.ast.PackageDeclaration;
 import com.github.javaparser.ast.body.ClassOrInterfaceDeclaration;
 import com.github.javaparser.ast.body.FieldDeclaration;
@@ -8,10 +9,12 @@ import com.github.javaparser.ast.body.MethodDeclaration;
 import com.github.javaparser.ast.body.VariableDeclarator;
 import com.github.javaparser.ast.expr.Expression;
 import com.github.javaparser.ast.expr.MethodCallExpr;
+import com.github.javaparser.ast.type.ClassOrInterfaceType;
 import com.github.javaparser.ast.visitor.VoidVisitorAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 /**
@@ -40,8 +43,17 @@ public class ParseVisitorAdapter extends VoidVisitorAdapter {
 
     @Override
     public void visit(ClassOrInterfaceDeclaration n, Object arg) {
+        if (javaClass.getSource().contains("test")) {
+            System.out.println();
+        }
+
         javaClass.setName(n.getNameAsString());
         javaClass.setFullName(javaClass.getJavaPackage() + "." + n.getNameAsString());
+
+        NodeList<ClassOrInterfaceType> extendList = n.getExtendedTypes();
+        if (Objects.nonNull(extendList) && extendList.isNonEmpty()) {
+            javaClass.setParent(ParseUtils.getFullType(javaClass, extendList.get(0).getNameAsString()));
+        }
 
         if (n.isClassOrInterfaceDeclaration()) {
             if (n.isInterface()) {
@@ -55,7 +67,8 @@ public class ParseVisitorAdapter extends VoidVisitorAdapter {
         javaClass.setIsAbstractClass(n.isAbstract());
         javaClass.setIsEnum(n.isEnumDeclaration());
 
-        n.getImplementedTypes().forEach(s -> javaClass.getInterfaceList().add(s.getNameAsString()));
+        n.getImplementedTypes().forEach(
+            s -> javaClass.getInterfaceList().add(ParseUtils.getFullType(javaClass, s.getNameAsString())));
         super.visit(n, arg);
     }
 
