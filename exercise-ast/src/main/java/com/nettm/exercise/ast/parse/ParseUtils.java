@@ -11,12 +11,6 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
-/**
- * 描述
- *
- * @author mu.tian
- * @date 2019-04-17 12:09
- */
 @UtilityClass
 public class ParseUtils {
 

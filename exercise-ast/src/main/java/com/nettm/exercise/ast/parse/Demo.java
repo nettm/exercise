@@ -2,12 +2,6 @@ package com.nettm.exercise.ast.parse;
 
 import java.util.*;
 
-/**
- * 描述
- *
- * @author mu.tian
- * @date 2019-04-17 15:59
- */
 public class Demo {
 
     public static void main(String[] args) {
