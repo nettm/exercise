@@ -97,6 +97,8 @@ public class SQLAnalysisScan {
             lst.add(generateObj(types[0]));
             if (Objects.nonNull(param)) {
                 map.put(name, lst);
+                map.put("collection", lst);
+                map.put("list", lst);
             } else {
                 return wrapCollection(lst);
             }
@@ -107,6 +109,8 @@ public class SQLAnalysisScan {
             set.add(generateObj(types[0]));
             if (Objects.nonNull(param)) {
                 map.put(name, set);
+                map.put("collection", set);
+                map.put("set", set);
             } else {
                 return wrapCollection(set);
             }
