@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<metadata>
+    <table source="source_table" target="target_table">
+        <!--<column source=" sourcetype="" target="" targetType="" defaultValue="">true</column>-->
+        <column source="id" sourcetype="bigint">true</column>
+        <column source="name" sourcetype="varchar">true</column>
+        <column target="test" targetType="varchar" defaultValue="a">true</column>
+    </table>
+</metadata>

@@ -102,5 +102,6 @@
         <module>exercise-rxjava</module>
         <module>exercise-ast</module>
         <module>exercise-mybatis</module>
+        <module>exercise-sync</module>
     </modules>
 </project>
