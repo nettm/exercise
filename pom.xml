@@ -103,5 +103,6 @@
         <module>exercise-ast</module>
         <module>exercise-mybatis</module>
         <module>exercise-sync</module>
+        <module>exercise-random</module>
     </modules>
 </project>
