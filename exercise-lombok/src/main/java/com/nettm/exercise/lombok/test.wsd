@@ -1,0 +1,6 @@
+@startuml
+actor 参与者
+database 数据库
+actor -> database : 查询数据
+database --> actor : 返回查询结果
+@enduml
