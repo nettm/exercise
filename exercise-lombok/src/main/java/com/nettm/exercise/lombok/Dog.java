@@ -12,9 +12,9 @@ import lombok.Synchronized;
 @Builder
 public class Dog {
 
-    String name;
+    private String name;
 
-    int age;
+    private int age;
 
     @Synchronized
     public static void main(String[] args) {
