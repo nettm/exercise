@@ -52,11 +52,12 @@ public class ConvertSql {
             } else if (line.equals("(")) {
                 clickhouseList.add(line);
             } else if (line.contains("primary key")) {
+                primaryKey = StringUtils.substringBetween(line, "(", ")");
+            } else if (line.equals(");")) {
                 int pos = clickhouseList.size();
                 String subLine = StringUtils.substringBeforeLast(clickhouseList.get(pos - 1), ",");
                 clickhouseList.set(pos - 1, subLine);
-                primaryKey = StringUtils.substringBetween(line, "(", ")");
-            } else if (line.equals(");")) {
+
                 clickhouseList.add(")");
                 clickhouseList.add("ENGINE = MergeTree()");
 
