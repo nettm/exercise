@@ -50,7 +50,7 @@ public class ConvertSql {
 
             if (line.contains("create table")) {
                 table = StringUtils.substringAfter(line, "create table").trim();
-                clickhouseList.add(line + " ON CLUSTER dw_cluster");
+                clickhouseList.add("create table test." + table + " ON CLUSTER dw_cluster");
             } else if (line.equals("(")) {
                 clickhouseList.add(line);
             } else if (line.contains("primary key")) {

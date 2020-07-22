@@ -49,7 +49,7 @@ public class ConvertSqlDistributed {
 
             if (line.contains("create table")) {
                 table = StringUtils.substringAfter(line, "create table").trim();
-                clickhouseList.add(line + "_all ON CLUSTER dw_cluster");
+                clickhouseList.add("create table test." + table + "_all ON CLUSTER dw_cluster");
             } else if (line.equals("(")) {
                 clickhouseList.add(line);
             } else if (line.contains("primary key")) {
