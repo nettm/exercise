@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class ConvertSql {
+public class ConvertSqlDistributed {
 
     public static void main(String[] args) {
         List<String> sourceList = readSource();
@@ -21,7 +21,7 @@ public class ConvertSql {
 
     private static List<String> readSource() {
         List<String> sourceList = new ArrayList<>(1024);
-        String path = ConvertSql.class.getResource("/tpcds.sql").getPath();
+        String path = ConvertSqlDistributed.class.getResource("/tpcds.sql").getPath();
         System.out.println("Source file is:" + path);
         try(Scanner scanner = new Scanner(new File(path))) {
             while (scanner.hasNextLine()) {
@@ -36,7 +36,6 @@ public class ConvertSql {
 
     private static List<String> convertSql(List<String> sourceList) {
         List<String> clickhouseList = new ArrayList<>(1024);
-        String primaryKey = null;
         String table = null;
         for (String line : sourceList) {
             if (StringUtils.isEmpty(line)) {
@@ -50,30 +49,19 @@ public class ConvertSql {
 
             if (line.contains("create table")) {
                 table = StringUtils.substringAfter(line, "create table").trim();
-                clickhouseList.add(line + " ON CLUSTER dw_cluster");
+                clickhouseList.add(line + "_all ON CLUSTER dw_cluster");
             } else if (line.equals("(")) {
                 clickhouseList.add(line);
             } else if (line.contains("primary key")) {
-                primaryKey = StringUtils.substringBetween(line, "(", ")");
             } else if (line.equals(");")) {
                 int pos = clickhouseList.size();
                 String subLine = StringUtils.substringBeforeLast(clickhouseList.get(pos - 1), ",");
                 clickhouseList.set(pos - 1, subLine);
 
                 clickhouseList.add(")");
-                clickhouseList.add("ENGINE = ReplicatedMergeTree('/clickhouse/tables/{shard}/test/" + table + "', '{replica}')");
-
-                if (StringUtils.isNotBlank(primaryKey)) {
-                    clickhouseList.add("PRIMARY KEY (" + primaryKey + ")");
-                    clickhouseList.add("ORDER BY (" + primaryKey + ")");
-                } else {
-                    clickhouseList.add("ORDER BY tuple()");
-                }
-
-                clickhouseList.add("SETTINGS index_granularity = 8192;");
+                clickhouseList.add("ENGINE = Distributed(dw_cluster, test, " + table + ", rand());");
 
                 // clear
-                primaryKey = null;
                 table = null;
             } else {
                 String column = getColumn(line);
@@ -127,7 +115,7 @@ public class ConvertSql {
             return type.replace("decimal", "Decimal");
         }
 
-        throw new UnsupportedOperationException();
+        throw new UnsupportedOperationException(type);
     }
 
     private static String notNull(String type, boolean notNull) {
