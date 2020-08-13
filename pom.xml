@@ -106,5 +106,6 @@
         <module>exercise-random</module>
         <module>exercise-presto</module>
         <module>exercise-clickhouse</module>
+        <module>exercise-guice</module>
     </modules>
 </project>
