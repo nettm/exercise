@@ -1,4 +1,4 @@
-package test;
+package com.nettm.exercise.spring.test;
 
 import com.nettm.exercise.spring.Application;
 import org.junit.After;
@@ -13,11 +13,11 @@ public abstract class BaseTest {
 
     @Before
     public void before() {
-
+        System.out.println("before");
     }
 
     @After
     public void after() {
-
+        System.out.println("after");
     }
 }
