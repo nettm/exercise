@@ -6,7 +6,7 @@ import org.springframework.beans.PropertyValues;
 import org.springframework.beans.factory.config.InstantiationAwareBeanPostProcessor;
 import org.springframework.stereotype.Component;
 
-@Component
+//@Component
 public class MyInstantiationAwareBeanPostProcessor implements InstantiationAwareBeanPostProcessor {
 
     public MyInstantiationAwareBeanPostProcessor() {
@@ -27,7 +27,7 @@ public class MyInstantiationAwareBeanPostProcessor implements InstantiationAware
             System.out.println("-------------------");
         }
 
-        return false;
+        return true;
     }
 
     @Override
