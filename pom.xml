@@ -105,5 +105,8 @@
         <module>exercise-mybatis</module>
         <module>exercise-sync</module>
         <module>exercise-random</module>
+        <module>exercise-presto</module>
+        <module>exercise-clickhouse</module>
+        <module>exercise-guice</module>
     </modules>
 </project>

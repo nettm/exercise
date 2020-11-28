@@ -1,5 +1,6 @@
 package com.nettm.exercise.spring.bean;
 
+import com.nettm.exercise.spring.cat.Persia;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.config.BeanFactoryPostProcessor;
 import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
@@ -21,7 +22,7 @@ public class MyBeanFactoryPostProcessor implements BeanFactoryPostProcessor {
         if (beanFactory instanceof DefaultListableBeanFactory) {
             DefaultListableBeanFactory factory = (DefaultListableBeanFactory) beanFactory;
             GenericBeanDefinition gbd = new GenericBeanDefinition();
-            gbd.setBeanClass(Package.class);
+            gbd.setBeanClass(Persia.class);
             factory.registerBeanDefinition("iCat", gbd);
         }
 

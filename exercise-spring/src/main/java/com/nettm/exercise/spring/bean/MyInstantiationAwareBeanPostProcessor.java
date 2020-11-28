@@ -15,36 +15,25 @@ public class MyInstantiationAwareBeanPostProcessor implements InstantiationAware
 
     @Override
     public Object postProcessBeforeInstantiation(Class<?> beanClass, String beanName) throws BeansException {
-        System.out.println("postProcessBeforeInstantiation");
+        System.out.println("postProcessBeforeInstantiation:" + beanName);
         return null;
     }
 
     @Override
     public boolean postProcessAfterInstantiation(Object bean, String beanName) throws BeansException {
-        System.out.println("postProcessAfterInstantiation");
+        System.out.println("postProcessAfterInstantiation:" + beanName);
 
         if (bean instanceof ICat) {
             System.out.println("-------------------");
         }
 
-        return false;
+        return true;
     }
 
     @Override
     public PropertyValues postProcessProperties(PropertyValues pvs, Object bean, String beanName) throws BeansException {
-        System.out.println("postProcessProperties");
+        System.out.println("postProcessProperties:" + beanName);
         return pvs;
     }
 
-    @Override
-    public Object postProcessBeforeInitialization(Object bean, String beanName) throws BeansException {
-        System.out.println("postProcessBeforeInitialization");
-        return bean;
-    }
-
-    @Override
-    public Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException {
-        System.out.println("postProcessAfterInitialization");
-        return bean;
-    }
 }
